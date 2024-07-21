@@ -1,3 +1,16 @@
+resource "ovh_domain_zone_record" "gravitoq_cname" {
+    zone = data.ovh_domain_zone.gravitoq_fr.name
+    subdomain = "www"
+    fieldtype = "CNAME"
+    target = "cname.vercel-dns.com."
+}
+
+resource "ovh_domain_zone_record" "gravitoq" {
+    zone = data.ovh_domain_zone.gravitoq_fr.name
+    subdomain = ""
+    fieldtype = "A"
+    target = "76.76.21.21"
+}
 
 resource "ovh_domain_zone_record" "pumpkin" {
     zone = data.ovh_domain_zone.crichard_fr.name
@@ -26,6 +39,20 @@ resource "ovh_domain_zone_record" "spf" {
     subdomain = ""
     fieldtype = "SPF"
     target = "v=spf1 include:mx.ovh.com ~all"
+}
+
+resource "ovh_domain_zone_record" "spf_pumpkin" {
+    zone = data.ovh_domain_zone.crichard_fr.name
+    subdomain = "pumpkin"
+    fieldtype = "SPF"
+    target = "v=spf1 include:mx.ovh.com ~all"
+}
+
+resource "ovh_domain_zone_record" "_dmarc_pumpkin" {
+    zone = data.ovh_domain_zone.crichard_fr.name
+    subdomain = "_dmarc.pumpkin"
+    fieldtype = "DMARC"
+    target = "v=DMARC1;p=none;rua=mailto:cesar@crichard.fr;sp=none;aspf=r;"
 }
 
 resource "ovh_domain_zone_record" "mx1" {
