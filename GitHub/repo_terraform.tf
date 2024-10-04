@@ -26,3 +26,40 @@ resource "github_issue_label" "hacktoberfest-accepted" {
     description = "Hacktoberfest acceptance label"
     color       = "029F92"
 }
+
+resource "github_repository_ruleset" "terraform_ruleset" {
+    repository = github_repository.terraform.id
+    name        = "Main Branch Protection"
+    target      = "branch"
+    enforcement = "active"
+
+    bypass_actors {
+        actor_id    = 1
+        actor_type  = "OrganizationAdmin"
+        bypass_mode = "always"
+    }
+
+    conditions {
+        ref_name {
+            exclude = []
+            include = [
+                "~DEFAULT_BRANCH",
+            ]
+        }
+    }
+
+    rules {
+        non_fast_forward = true
+        creation         = true
+        update           = true
+        deletion         = true
+
+        pull_request {
+            dismiss_stale_reviews_on_push     = true
+            require_code_owner_review         = false
+            require_last_push_approval        = true
+            required_approving_review_count   = 1
+            required_review_thread_resolution = true
+        }
+    }
+}
