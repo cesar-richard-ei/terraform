@@ -12,6 +12,8 @@ resource "github_repository" "paystack" {
     allow_squash_merge = false
     allow_rebase_merge = true
 
+    delete_branch_on_merge = true
+
     auto_init = false
     vulnerability_alerts = true
 
