@@ -1,7 +1,7 @@
 resource "github_repository" "paystack" {
     name        = "paystack"
     description = "Pastèque mais dit a l'envers"
-    visibility  = "public"
+    visibility  = "private"
 
     has_issues    = true
     has_wiki      = false
