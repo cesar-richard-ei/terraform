@@ -15,5 +15,5 @@ resource "github_repository" "terraform" {
     auto_init = false
     vulnerability_alerts = true
 
-    topics = ["terraform", "iac"]
+    topics = ["terraform", "iac", "hacktoberfest"]
 }
