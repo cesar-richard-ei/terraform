@@ -27,6 +27,30 @@ resource "github_issue_label" "hacktoberfest-accepted" {
     color       = "029F92"
 }
 
+resource "github_team_repository" "terraform_developers" {
+    team_id    = github_team.developers.id
+    repository = github_repository.terraform.name
+    permission = "push"
+}
+
+resource "github_team_repository" "terraform_devops" {
+    team_id    = github_team.devops.id
+    repository = github_repository.terraform.name
+    permission = "maintain"
+}
+
+resource "github_team_repository" "terraform_security" {
+    team_id    = github_team.security.id
+    repository = github_repository.terraform.name
+    permission = "push"
+}
+
+resource "github_team_repository" "terraform_management" {
+    team_id    = github_team.management.id
+    repository = github_repository.terraform.name
+    permission = "admin"
+}
+
 resource "github_repository_ruleset" "terraform_ruleset" {
     repository = github_repository.terraform.id
     name        = "Main Branch Protection"
