@@ -8,6 +8,8 @@ resource "github_repository" "terraform" {
     has_downloads = false
     has_projects  = true
 
+    delete_branch_on_merge = true
+
     allow_merge_commit = false
     allow_squash_merge = false
     allow_rebase_merge = true
