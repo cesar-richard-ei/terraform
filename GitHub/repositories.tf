@@ -17,3 +17,10 @@ resource "github_repository" "terraform" {
 
     topics = ["terraform", "iac", "hacktoberfest"]
 }
+
+resource "github_issue_label" "hacktoberfest-accepted" {
+    repository  = github_repository.terraform.id
+    name        = "hacktoberfest-accepted"
+    description = "Hacktoberfest acceptance label"
+    color       = "029F92"
+}
