@@ -16,7 +16,7 @@ resource "ovh_domain_zone_record" "pumpkin" {
     zone = data.ovh_domain_zone.crichard_fr.name
     subdomain = "pumpkin"
     fieldtype = "A"
-    target = "5.39.81.146"
+    target = "82.66.218.90"
 }
 
 
