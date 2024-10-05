@@ -12,13 +12,19 @@ resource "ovh_domain_zone_record" "gravitoq" {
     target = "76.76.21.21"
 }
 
+resource "ovh_domain_zone_record" "palworld" {
+    zone = data.ovh_domain_zone.crichard_fr.name
+    subdomain = "palworld"
+    fieldtype = "A"
+    target = "82.66.218.90"
+}
+
 resource "ovh_domain_zone_record" "pumpkin" {
     zone = data.ovh_domain_zone.crichard_fr.name
     subdomain = "pumpkin"
     fieldtype = "A"
     target = "82.66.218.90"
 }
-
 
 resource "ovh_domain_zone_record" "_dmarc" {
     zone = data.ovh_domain_zone.crichard_fr.name
